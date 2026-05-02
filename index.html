@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonderland - TK Melati DWP UNM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple: #9b59b6;
+            --pink: #ff758c;
+            --blue: #54a0ff;
+            --bg-grad: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-grad);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- Animasi Latar Belakang Wonderland --- */
+        .wonderland-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            width: 100px;
+            height: 40px;
+            border-radius: 50px;
+            opacity: 0.8;
+            animation: moveCloud 20s linear infinite;
+        }
+        .cloud::after, .cloud::before {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+        .cloud::after { width: 50px; height: 50px; top: -25px; left: 15px; }
+        .cloud::before { width: 40px; height: 40px; top: -15px; left: 45px; }
+
+        @keyframes moveCloud {
+            from { left: -150px; }
+            to { left: 100%; }
+        }
+
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            animation: floatBalloon 6s ease-in-out infinite;
+            bottom: -100px;
+        }
+        @keyframes floatBalloon {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+        }
+
+        /* --- Konten Utama --- */
+        .main-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: 8px solid white;
+            max-width: 400px;
+            width: 90%;
+            z-index: 10;
+        }
+
+        .main-card h1 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--purple);
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 0px white;
+        }
+
+        .main-card p {
+            color: #57606f;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s all;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-undangan { background: var(--pink); color: white; }
+        .btn-acara { background: var(--blue); color: white; }
+
+        .btn:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+        /* --- Overlay Gambar --- */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        #overlay img {
+            max-height: 90vh;
+            max-width: 95vw;
+            border-radius: 10px;
+        }
+
+        .close-text { color: white; margin-top: 15px; font-size: 0.9rem; opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+    <div class="wonderland-bg">
+        <div class="cloud" style="top: 10%; animation-duration: 25s;"></div>
+        <div class="cloud" style="top: 25%; animation-duration: 18s; animation-delay: -5s;"></div>
+        <div class="cloud" style="top: 15%; animation-duration: 30s; animation-delay: -10s;"></div>
+
+        <div class="balloon" style="left: 10%; background: #ff9ff3; animation-delay: 0s;"></div>
+        <div class="balloon" style="left: 30%; background: #feca57; animation-delay: 2s; animation-duration: 8s;"></div>
+        <div class="balloon" style="left: 70%; background: #48dbfb; animation-delay: 4s;"></div>
+        <div class="balloon" style="left: 85%; background: #ff6b6b; animation-delay: 1s; animation-duration: 7s;"></div>
+    </div>
+
+    <div class="main-card">
+        <div style="font-size: 50px; margin-bottom: 10px;">🏰</div>
+        <h1>WONDERLAND</h1>
+        <p>Porseni TK Melati DWP UNM <br> 2025/2026</p>
+        
+        <div class="btn-group">
+            <!-- Tombol diarahkan ke laman1.jpg -->
+            <button class="btn btn-undangan" onclick="openImg('laman1.png')">📖 Buka Undangan</button>
+            <!-- Tombol diarahkan ke laman2.jpg -->
+            <button class="btn btn-acara" onclick="openImg('laman2.png')">📜 Susunan Acara</button>
+        </div>
+    </div>
+
+    <div id="overlay" onclick="closeImg()">
+        <img id="fullImg" src="" alt="Memuat Gambar...">
+        <div class="close-text">Klik di mana saja untuk kembali</div>
+    </div>
+
+    <script>
+        function openImg(file) {
+            document.getElementById('fullImg').src = file;
+            document.getElementById('overlay').style.display = 'flex';
+        }
+        function closeImg() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
